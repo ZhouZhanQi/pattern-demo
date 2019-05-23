@@ -1,12 +1,13 @@
 package com.pattern.demo;
 
+import com.pattern.demo.example.CglibHelloExample;
+import com.pattern.demo.interceptor.CglibInterceptor;
 import com.pattern.demo.proxy.DynamicStaticProxy;
 import com.pattern.demo.proxy.HelloStaticProxy;
 import com.pattern.demo.service.IHelloService;
 import com.pattern.demo.service.impl.IHelloServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -29,6 +30,15 @@ public class PatternDemoApplicationTests {
         IHelloService helloService = (IHelloService) dynamicStaticProxy.newProxyInstance();
         helloService.sayByeBye("zzq1");
         helloService.sayHello("zzq2");
+    }
+
+
+    @Test
+    public void cglibProxyTest() {
+        CglibInterceptor cglibProxy = new CglibInterceptor();
+        CglibHelloExample helloExample = (CglibHelloExample) cglibProxy.newProxyInstance(CglibHelloExample.class);
+        helloExample.sayHello("zzq1");
+        helloExample.sayByeBye("zzq2");
     }
 
 }
