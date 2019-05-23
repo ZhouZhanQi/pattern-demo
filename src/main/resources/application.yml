@@ -1,0 +1,7 @@
+server:
+  port: 8081
+logging:
+  path: /data/logs/pattern-demo
+  level:
+    root: debug
+  stdout: STDOUT
